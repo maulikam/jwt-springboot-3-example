@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			log.info("Invalid header, invalid token");
 		}
 
-		if (username != null
+		if (username != null && !username.trim().isEmpty()
 					&& SecurityContextHolder.getContext().getAuthentication() ==null) {
 			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 			Boolean validateToken = this.jwtTokenHelper.validateToken(token, userDetails);
